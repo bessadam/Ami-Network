@@ -1,0 +1,116 @@
+.posts-panel {
+  border: none;
+  border-radius: 5px;
+
+  &-title {
+    border-left: 3px solid rgb(232, 95, 99);
+    margin: 15px 0;
+
+    p {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      padding: 5px 0 5px 10px;
+    }
+  }
+}
+
+.posts-block {
+  display: flex;
+  width: 300px;
+  background-color: #fff;
+  color: #000;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+
+  &-image {
+    height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    &-item {
+      height: 100%;
+    }
+  }
+
+  &-info {
+    margin-left: 10px;
+    font-weight: bold;
+
+    &-title {
+      margin-bottom: 5px;
+      transition: 0.2s;
+      word-break: break-word;
+    }
+    &-date {
+      color: rgb(98,109,122);
+      font-size: 12px;
+    }
+  }
+}
+
+.posts-panel-users {
+  width: 300px;
+  padding: 20px 15px;
+  border-radius: 5px;
+  background-color: #fff;
+
+  &-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  &-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    &-avatar {
+      height: 50px;
+      min-width: 50px;
+      max-width: 50px;
+      overflow: hidden;
+      border-radius: 50%;
+  
+      img {
+        height: 100%;
+        cursor: pointer;
+      }
+    }
+
+    &-user {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px;
+      
+      &-login {
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+          color:rgb(216, 13, 20);
+        }
+      }
+
+      &-status {
+        font-size: 50px;
+        font-weight: bolder;
+        color: gray;
+
+        &-online {
+          font-size: 50px;
+          font-weight: bolder;
+          color: rgb(29,255,0);
+        }
+      }
+    }
+  }
+}

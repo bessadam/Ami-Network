@@ -1,0 +1,224 @@
+.content {
+  width: 720px;
+  border: none;
+  margin: 0 20px;
+  border-radius: 5px;
+}
+
+.content-block {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 15px 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  &-header {
+    display: flex;
+    flex-direction: column;
+
+    &-list {
+      display: flex;
+      align-items: center;
+
+      font-size: 12px;
+      list-style: none;
+
+      &-theme {
+        font-weight: 900;
+        margin-right: 5px;
+        cursor: pointer;
+
+        &:hover {
+          color: red;
+        }
+      }
+
+      &-date {
+        color: #9a9a9a;
+      }
+    }
+
+    &-autor {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+
+      &-img {
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        &-item {
+          display: inline;
+          margin: 0 auto;
+          height: 100%;
+          width: auto;
+          cursor: pointer;
+        }
+      }
+
+      &-info {
+        margin-left: 10px;
+
+        &-name {
+          margin-bottom: 3px;
+          font-weight: 900;
+          cursor: pointer;
+
+          &:hover {
+            color: red;
+          }
+        }
+
+        &-dignity {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  &-text {
+    margin-top: 20px;
+
+    line-height: 1.5;
+    font-size: 18px;
+  }
+
+  &-media {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    &-share {
+      display: flex;
+      align-items: center;
+    }
+
+    span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 5px;
+
+      .media-item {
+        color: rgb(232, 95, 99);
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        margin-right: 3px;
+      }
+
+      .google-icon {
+        width: 33px;
+        height: 33px;
+      }
+    }
+
+    &-rating {
+      display: flex;
+
+      span {
+        width: 55px;
+      }
+    }
+  }
+
+  &-comments {
+    border-top: 1px solid rgb(23,25,38);
+    margin-top: 20px;
+    padding-top: 10px;
+
+    &-item {
+      display: flex;
+      padding: 20px 0;
+
+      &-avatar {
+        min-width: 45px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 50%;
+  
+        img {
+          height: 100%;
+        }
+      }
+  
+      &-info {
+        width: 100%;
+        margin-left: 10px;
+        border-bottom: 1px solid rgb(220,225,229);
+
+        &-name {
+          margin-bottom: 3px;
+          font-weight: 900;
+        }
+
+        &-date {
+          padding: 10px 0;
+          font-size: 12px;
+          color: rgb(98,109,122);
+        }
+      }
+    }
+
+    &-createPost {
+      display: flex;
+      margin-top: 10px;
+
+      &-avatar {
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+          height: 100%;
+        }
+      }
+
+      &-field {
+        margin-left: 10px;
+        width: 85%;
+
+        textarea {
+          height: 45px;
+          width: 100%;
+          padding: 10px 15px;
+          outline: none;
+          overflow: hidden;
+          border: 1px solid rgb(216, 222, 228);
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          font-size: 16px;
+          border-right: none;
+          font-family: Roboto, "Helvetica Neue";
+          resize: none;
+          overflow-y: auto;
+        }
+      }
+
+      &-submit {
+        height: 45px;
+        border: 1px solid rgb(216, 222, 228);
+        text-align: center;
+        padding: 7px 15px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
+
+        .submit-icon {
+          width: 30px;
+          height: 30px;
+          color: rgb(232, 95, 99);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+
+

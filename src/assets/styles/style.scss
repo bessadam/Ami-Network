@@ -1,0 +1,82 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(23, 25, 38);
+}
+
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px 0;
+  height: 100vh;
+
+  h1 {
+    color: red;
+  }
+
+  h2 {
+    color: white;
+    margin-top: 10px;
+
+    b {
+      color: red;
+    }
+  }
+
+  .postContainer {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.posts {
+  display: flex;
+  justify-content: center;
+  padding: 30px 80px;
+}
+
+.PostTheme {
+  display: flex;
+  justify-content: center;
+  padding: 30px 80px;
+
+  &-container {
+    width: 700px;
+    width: 720px;
+    border: none;
+    margin: 0 20px;
+  }
+}
+
+.Profile {
+  display: flex;
+  justify-content: center;
+  padding: 30px 80px;
+
+  &-container {
+    width: 720px;
+    border: none;
+    margin: 0 20px;
+  }
+}
+
+.NotFoundPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  font-size: 50px;
+}

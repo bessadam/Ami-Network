@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Neucha&family=Redressed&display=swap");
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 75px;
+  padding: 10px 80px;
+  background-color: rgb(15, 17, 29);
+  color: white;
+  font-family: Redressed, sans-serif;
+  z-index: 1;
+
+  &-block {
+    display: flex;
+    justify-content: space-between;
+    width: 1290px;
+
+    &-brand {
+      display: flex;
+      align-items: center;
+
+      &-logo {
+        font-size: 30px;
+        text-transform: uppercase;
+        a {
+          font-size: 30px;
+          text-decoration: none;
+          color: red;
+        }
+
+        b {
+          color: white;
+        }
+      }
+    }
+
+    &-pages {
+      ul {
+        display: flex;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          margin-left: 20px;
+          list-style: none;
+          cursor: pointer;
+          font-size: 30px;
+
+          &:hover {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+}

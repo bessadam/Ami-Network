@@ -1,0 +1,65 @@
+.profile-block {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border: 3px solid rgb(17,129,145);
+  border-radius: 10px;
+  background-color: rgb(16,33,51);
+
+
+  &-banner {
+   height: 310px;
+
+    &-img {
+      width: 100%;
+      height: auto;
+      border-bottom: 3px solid rgb(17,129,145);
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+
+    &-avatar {
+      height: 200px;
+      width: 200px;
+      margin: 0 20px;
+      border: 3px solid rgb(17,129,145);
+      overflow: hidden;
+      border-radius: 50%;
+      transform: translateY(-100px);
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    color: #fff;
+
+    &-login {
+      font-size: 30px;
+      font-weight: 700;
+    }
+    
+    &-github {
+      padding: 5px 0;
+      width: 100%;
+
+      i:hover {
+        cursor: pointer;
+        color: rgb(232, 95, 99);
+      }
+    }
+
+    &-activity {
+      display: flex;
+
+
+      p {
+        margin-right: 10px;
+      }
+    }
+  }
+}

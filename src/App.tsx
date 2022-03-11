@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./assets/styles/style.scss";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import { AdminPanel, Posts, PostTheme, Profile, NotFoundPage } from "./pages";
+import { Context } from "./context/Context";
+import { IPost } from "./types/PostInterface";
+import { MockPosts } from "./assets/data/Posts";
 
-function App() {
+const App: React.FC = () => {
+  const [postState, setPostState] = React.useState<IPost[]>(MockPosts);
+
+  React.useEffect(() => {
+    let postStorage = localStorage.getItem("posts");
+    if (postStorage) {
+      setPostState(JSON.parse(postStorage));
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Context.Provider value={[postState, setPostState]}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Posts />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/theme/:category" element={<PostTheme />} />
+          <Route path="/profile/:login" element={<Profile />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </Context.Provider>
     </div>
   );
-}
+};
 
 export default App;
