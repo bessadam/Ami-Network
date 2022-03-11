@@ -35,7 +35,6 @@ const PostBlock: React.FC = () => {
 
   const handleVisibility:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setVisibility(e.target.value)
-    console.log(visibility)
   };
 
   const submitPost = () => {
@@ -47,15 +46,14 @@ const PostBlock: React.FC = () => {
         category: category,
         title: title,
         text: text,
-        lmao: 0,
         loggedIn: true,
         visibility: visibility,
       }
-      setState([newPost, ...state])
-      localStorage.setItem("posts", JSON.stringify([newPost, ...state]))
-      navigate("/")
+      setState([newPost, ...state]);
+      localStorage.setItem("posts", JSON.stringify([newPost, ...state]));
+      navigate("/");
     } else {
-      alert("Fields must contains more than 15 letters")
+      alert("Fields must contains more than 15 letters");
     }
   };
 
@@ -67,8 +65,8 @@ const PostBlock: React.FC = () => {
   };
 
   const clearData = () => {
-    setTitle("")
-    setText("")
+    setTitle("");
+    setText("");
   };
 
   const jumpToGithub = () => {

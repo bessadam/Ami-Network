@@ -2,16 +2,17 @@ import React from "react";
 import "./ContentSide.scss";
 import CommentBlock from "./CommentBlock";
 import { IPost } from "../../types/PostInterface";
+import { NavLink } from "react-router-dom";
 
-//icons 
+//icons
 import { BsTelegram } from "react-icons/bs";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import { FaLaughSquint } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
 import { FaRegCommentDots } from "react-icons/fa";
-import { BsArrowUpRightCircle } from "react-icons/bs"
-import { NavLink } from "react-router-dom";
+import { BsArrowUpRightCircle } from "react-icons/bs";
+import { MdOutlinePrivacyTip } from "react-icons/md";
 
 interface PostProps {
   posts: IPost;
@@ -21,61 +22,69 @@ const ContentBlock: React.FC<PostProps> = (props) => {
   let { posts } = props;
   const [lmao, setLmao] = React.useState<number>(0);
   const [heart, setHeart] = React.useState<number>(0);
-  const [commentValue, setCommentValue] = React.useState<string>("")
-  const [comments, setComments] = React.useState<any>([]) //Bad
-  const loggedIn = localStorage.getItem("loggedIn")
-  const avatar = localStorage.getItem("avatar")
+  const [commentValue, setCommentValue] = React.useState<string>("");
+  const [comments, setComments] = React.useState<any>([]);
+  const loggedIn = localStorage.getItem("loggedIn");
+  const avatar = localStorage.getItem("avatar");
+  const commentRef = React.useRef<HTMLTextAreaElement>(null);
 
   const addLmao = () => {
-    setLmao(prev => prev + 1)
-  }
+    setLmao((prev) => prev + 1);
+  };
 
   const addHeart = () => {
-    setHeart(prev => prev + 1)
-  }
+    setHeart((prev) => prev + 1);
+  };
 
   const shareTelegramm = () => {
     let url = window.location.href;
-    window.open(`https://t.me/share/url?url=${url}&text=${posts.title}`)
-  }
+    window.open(`https://t.me/share/url?url=${url}&text=${posts.title}`);
+  };
 
   const handleComment: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    setCommentValue(e.target.value)
-  }
+    setCommentValue(e.target.value);
+  };
 
   const addComment = () => {
-    if(commentValue.trim()) {
+    if (commentValue.trim()) {
       let date = new Date();
       let newPost = {
         avatar: posts.avatar,
         text: commentValue,
-        date: date.toDateString() + " at " + String(date.getHours()) + ":" + String(date.getMinutes()),
-      }
-      setComments([...comments, newPost])
-      localStorage.setItem("comments", JSON.stringify([...comments, newPost]))
-      setCommentValue("")
+        date:
+          date.toDateString() +
+          " at " +
+          String(date.getHours()) +
+          ":" +
+          String(date.getMinutes()),
+      };
+      setComments([...comments, newPost]);
+      localStorage.setItem("comments", JSON.stringify([...comments, newPost]));
+      setCommentValue("");
+      if(commentRef.current) commentRef.current.blur()
     }
-  }
+  };
 
-  const handleKeyDown:React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
-    if(e.key === "Enter") {
-      addComment()
+  const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+    if (e.key === "Enter") {
+      addComment();
     }
-  }
+  };
 
   return (
     <div className="content-block">
       <div className="content-block-header">
         <ul className="content-block-header-list">
           <NavLink to={`/theme/${posts.category}`}>
-            <li className="content-block-header-list-theme">{posts.category}</li>
+            <li className="content-block-header-list-theme">
+              {posts.category}
+            </li>
           </NavLink>
           <li className="content-block-header-list-date">{posts.date}</li>
+          <li className="content-block-header-list-privacy">{posts.visibility === "Only Authorized Users" ? <MdOutlinePrivacyTip/> : ""}</li>
         </ul>
         <div className="content-block-header-title">
-          <h1>
-            {posts.title}
-          </h1>
+          <h1>{posts.title}</h1>
         </div>
         <div className="content-block-header-autor">
           <div className="content-block-header-autor-img">
@@ -89,10 +98,14 @@ const ContentBlock: React.FC<PostProps> = (props) => {
           </div>
           <div className="content-block-header-autor-info">
             <NavLink to={`/profile/${posts.login}`}>
-              <p className="content-block-header-autor-info-name">{posts.login}</p>
+              <p className="content-block-header-autor-info-name">
+                {posts.login}
+              </p>
             </NavLink>
             <p className="content-block-header-autor-info-dignity">
-              {posts.login === "bessadam" ? "Admin of Posts Network" : "GitHub User of Posts Network"}
+              {posts.login === "bessadam"
+                ? "Admin of Posts Network"
+                : "GitHub User of Posts Network"}
             </p>
           </div>
         </div>
@@ -109,9 +122,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
             <BsFacebook className="media-item" />
           </span>
           <span>
-            <AiFillGoogleCircle
-              className="media-item google-icon"
-            />
+            <AiFillGoogleCircle className="media-item google-icon" />
           </span>
         </div>
         <div className="content-block-media-rating">
@@ -130,22 +141,33 @@ const ContentBlock: React.FC<PostProps> = (props) => {
         </div>
       </div>
       <div className="content-block-comments">
-        {comments.map((item: {text: string, date: string}, key: number) => {
-          return <CommentBlock item={item} key={key}/>
+        {comments.map((item: { text: string; date: string }, key: number) => {
+          return <CommentBlock item={item} key={key} />;
         })}
-        {loggedIn ? 
+        {loggedIn ? (
           <div className="content-block-comments-createPost">
             <div className="content-block-comments-createPost-avatar">
               <img alt="" src={avatar ? avatar : posts.avatar} />
             </div>
             <div className="content-block-comments-createPost-field">
-              <textarea value={commentValue} onChange={handleComment} placeholder="Write a new comment" onKeyDown={handleKeyDown}  />          
+              <textarea
+                ref={commentRef}
+                value={commentValue}
+                onChange={handleComment}
+                placeholder="Write a new comment"
+                onKeyDown={handleKeyDown}
+              />
             </div>
-            <div className="content-block-comments-createPost-submit" onClick={addComment}>
-              <BsArrowUpRightCircle className="submit-icon"/>
+            <div
+              className="content-block-comments-createPost-submit"
+              onClick={addComment}
+            >
+              <BsArrowUpRightCircle className="submit-icon" />
             </div>
           </div>
-        : ""}
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

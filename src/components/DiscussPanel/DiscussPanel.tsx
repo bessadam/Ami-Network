@@ -10,7 +10,13 @@ const DiscussPanel: React.FC = () => {
   const loggedIn = localStorage.getItem("loggedIn");
 
   const filteredState = state.filter((itemFilter: any, index: number) => {
-    return index === state.findIndex((item: any) => item.login === itemFilter.login)
+    return index === state.findIndex((item: any) => item.login === itemFilter.login);
+  });
+
+  let allVisibleState = state.filter((item: any) => {
+    if(item.visibility === "Everyone") {
+      return item;
+    };
   });
 
   return (
@@ -18,13 +24,14 @@ const DiscussPanel: React.FC = () => {
       <div className="posts-panel-title">
         <p>Most Relevant Posts</p>
       </div>
-      {state.slice(0,4).map((post: IPost, key: number) => {
-        if(post.visibility === "Everyone") {
+      {loggedIn ?
+        state.slice(0,4).map((post: IPost, key: number) => {
           return <DiscussBlock posts={post} key={key} />
-        } else if(loggedIn && post.visibility === "Only Authorized Users") {
+        })
+      : allVisibleState.slice(0,4).map((post: IPost, key: number) => {
           return <DiscussBlock posts={post} key={key} />
-        }
-      })}
+        })
+      }
       <div className="posts-panel-users">
         <p className="posts-panel-users-title">Our Users</p>
         {filteredState.map((item: {}, key: number) => {

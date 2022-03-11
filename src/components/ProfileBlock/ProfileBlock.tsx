@@ -21,15 +21,21 @@ const ProfileBlock: React.FC<LoginProps> = (props) => {
     window.open(`https://github.com/${githubLogin}`);
   };
 
-  const filteredTestState = state.filter((itemFilter: any, index: number) => {
+  const filteredState = state.filter((itemFilter: any, index: number) => {
     return index === state.findIndex((item: any) => item.login === itemFilter.login)
+  });
+
+  let postsCount = state.filter((item: any) => {
+    if(item.login === login) {
+      return item
+    } else return null
   });
 
   return (
     <div className="profile-block">
       <div className="profile-block-banner">
         <img src={ Banner } alt="" className="profile-block-banner-img" />
-        {filteredTestState.map((item: any, key: number) => {
+        {filteredState.map((item: any, key: number) => {
           return item.login === login ? <div className="profile-block-banner-avatar" key={key}><img src={ item.avatar } alt="" key={key} /></div> : null
         })}
       </div>
@@ -37,8 +43,8 @@ const ProfileBlock: React.FC<LoginProps> = (props) => {
         <p className="profile-block-info-login">{login}</p>
         <p className="profile-block-info-github" onClick={() => jumpToGithub(login)}><i>@{login}</i></p>
         <div className="profile-block-info-activity">
-          <p><b>2</b> Posts</p>
-          <p><b>15</b> Likes</p>
+          <p><b>{postsCount.length}</b> Posts</p>
+          <p><b>{0}</b> Likes</p>
         </div>
       </div>
     </div>

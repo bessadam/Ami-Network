@@ -19,14 +19,11 @@
 
     &-list {
       display: flex;
-      align-items: center;
-
       font-size: 12px;
       list-style: none;
 
       &-theme {
         font-weight: 900;
-        margin-right: 5px;
         cursor: pointer;
 
         &:hover {
@@ -36,6 +33,11 @@
 
       &-date {
         color: #9a9a9a;
+        padding: 0 5px;
+      }
+
+      &-privacy {
+        color: red;
       }
     }
 

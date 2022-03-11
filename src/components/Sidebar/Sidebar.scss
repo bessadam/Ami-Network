@@ -14,6 +14,8 @@
 
   .sidebar-list {
     width: 230px;
+    position: sticky;
+    top: 75px;
   
     h2 {
       padding: 10px 20px;

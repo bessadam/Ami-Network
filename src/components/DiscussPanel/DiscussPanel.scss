@@ -46,9 +46,19 @@
       transition: 0.2s;
       word-break: break-word;
     }
-    &-date {
-      color: rgb(98,109,122);
+
+    &-subtext {
+      display: flex;
       font-size: 12px;
+      
+      &-date {
+        color: rgb(98,109,122);
+      }
+  
+      &-privacy {
+        padding-left: 5px;
+        color: red;
+      }
     }
   }
 }
