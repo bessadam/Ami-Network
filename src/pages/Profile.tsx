@@ -9,17 +9,30 @@ import { Context } from "../context/Context";
 const Profile: React.FC = () => {
   const { login } = useParams();
   const [state] = React.useContext(Context);
+  const loggedIn = localStorage.getItem("loggedIn");
+
+  let allVisibleState = state.filter((item: any) => {
+    if (item.visibility === "Everyone") {
+      return item;
+    }
+  });
 
   return (
     <div className="Profile">
       <Sidebar />
       <div className="Profile-container">
         <ProfileBlock login={login} state={state} />
-        {state.map((item: any, key: number) => {
-          return item.login === login ? (
-            <ContentBlock posts={item} key={key} />
-          ) : null;
-        })}
+        {loggedIn
+          ? state.map((item: any, key: number) => {
+            return item.login === login ? 
+              <ContentBlock posts={item} key={key} />
+            : null;
+            })
+          : allVisibleState.map((item: any, key: number) => {
+            return item.login === login ? 
+              <ContentBlock posts={item} key={key} />
+            : null;
+          })}
       </div>
       <DiscussPanel />
     </div>

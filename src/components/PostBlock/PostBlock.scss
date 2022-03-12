@@ -67,8 +67,14 @@
       margin-bottom: 30px;
 
       label {
+        display: flex;
+        align-items: center;
         font-size: 12px;
         color: #eee; 
+
+        .privacy-icon {
+          margin-left: 5px;
+        }
       }
 
       select {
@@ -85,6 +91,7 @@
       input {
         width: 400px;
         height: 40px;
+        padding-left: 5px;
         outline: none;
         border: none;
         color: white;
@@ -101,6 +108,7 @@
       textarea {
         width: 400px;
         height: 100px;
+        padding-left: 5px;
         outline: none;
         border: none;
         color: white;

@@ -1,12 +1,12 @@
 import React from "react";
 import ContentBlock from "./ContentBlock";
 import "./ContentSide.scss";
-import {Context} from "../../context/Context"
-import {IPost} from "../../types/PostInterface"
+import {Context} from "../../context/Context";
+import {IPost} from "../../types/PostInterface";
 
 const ContentSide: React.FC = () => {
-  const [state, ] = React.useContext(Context);
-  const loggedIn = localStorage.getItem("loggedIn")
+  const [state] = React.useContext(Context);
+  const loggedIn = localStorage.getItem("loggedIn");
 
   return (
     <div className="content">

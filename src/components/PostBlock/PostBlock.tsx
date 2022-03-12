@@ -8,7 +8,7 @@ import { postViewers } from "../../assets/data/Posts";
 //icons
 import { AiOutlineLogout } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
-
+import { MdOutlinePrivacyTip } from "react-icons/md";
 
 const PostBlock: React.FC = () => {
   const [category, setCategory] = React.useState<string>("Front-end");
@@ -124,7 +124,7 @@ const PostBlock: React.FC = () => {
           <textarea value={text} onChange={handleText} />
         </div>
         <div className="post-block-form-field">
-          <label>Who can see post</label>
+          <label>Who can see the post<MdOutlinePrivacyTip className="privacy-icon"/></label>
           <select defaultValue={visibility} onChange={handleVisibility}>
             {postViewers.map((item, key) => (
               <option key={key} value={item}>{item}</option>
