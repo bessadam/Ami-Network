@@ -48,6 +48,8 @@ const PostBlock: React.FC = () => {
         text: text,
         loggedIn: true,
         visibility: visibility,
+        like: 0,
+        heart: 0,
       }
       setState([newPost, ...state]);
       localStorage.setItem("posts", JSON.stringify([newPost, ...state]));
@@ -110,7 +112,7 @@ const PostBlock: React.FC = () => {
         <div className="post-block-form-field">
           <label>Category</label>
           <select defaultValue={category} onChange={handleCategories}>
-            {postCategories.map((item, key) => (
+            {postCategories.map((item: string, key: number) => (
               <option key={key} value={item}>{item}</option>
             ))}
           </select>
@@ -126,7 +128,7 @@ const PostBlock: React.FC = () => {
         <div className="post-block-form-field">
           <label>Who can see the post<MdOutlinePrivacyTip className="privacy-icon"/></label>
           <select defaultValue={visibility} onChange={handleVisibility}>
-            {postViewers.map((item, key) => (
+            {postViewers.map((item: string, key: number) => (
               <option key={key} value={item}>{item}</option>
             ))}
           </select>

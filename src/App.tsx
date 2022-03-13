@@ -18,6 +18,7 @@ const App: React.FC = () => {
     }
   }, []);
 
+
   return (
     <div className="App">
       <Context.Provider value={[postState, setPostState]}>

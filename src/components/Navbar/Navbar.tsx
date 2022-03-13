@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
         <div className="navbar-block-brand">
           <div className="navbar-block-brand-logo">
             <NavLink to="/">
-              <b>Posts</b> Network
+              <b>AMI</b> Network
             </NavLink>
           </div>
         </div>

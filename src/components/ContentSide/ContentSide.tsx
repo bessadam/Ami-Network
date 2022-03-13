@@ -12,9 +12,9 @@ const ContentSide: React.FC = () => {
     <div className="content">
       {state.map((post: IPost, key: number) => {
         if(post.visibility === "Everyone") {
-          return <ContentBlock posts={post} key={key} />
+          return <ContentBlock post={post} key={key} />
         } else if(loggedIn && post.visibility === "Only Authorized Users") {
-          return <ContentBlock posts={post} key={key} />
+          return <ContentBlock post={post} key={key} />
         }
       })}
     </div>

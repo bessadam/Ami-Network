@@ -5,13 +5,14 @@ import DiscussPanel from "../components/DiscussPanel/DiscussPanel";
 import ProfileBlock from "../components/ProfileBlock/ProfileBlock";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { Context } from "../context/Context";
+import { IPost } from "../types/PostInterface";
 
 const Profile: React.FC = () => {
   const { login } = useParams();
   const [state] = React.useContext(Context);
   const loggedIn = localStorage.getItem("loggedIn");
 
-  let allVisibleState = state.filter((item: any) => {
+  let allVisibleState = state.filter((item: IPost) => {
     if (item.visibility === "Everyone") {
       return item;
     }
@@ -21,16 +22,16 @@ const Profile: React.FC = () => {
     <div className="Profile">
       <Sidebar />
       <div className="Profile-container">
-        <ProfileBlock login={login} state={state} />
+        {login && <ProfileBlock login={login} state={state} />}
         {loggedIn
-          ? state.map((item: any, key: number) => {
+          ? state.map((item: IPost, key: number) => {
             return item.login === login ? 
-              <ContentBlock posts={item} key={key} />
+              <ContentBlock post={item} key={key} />
             : null;
             })
-          : allVisibleState.map((item: any, key: number) => {
+          : allVisibleState.map((item: IPost, key: number) => {
             return item.login === login ? 
-              <ContentBlock posts={item} key={key} />
+              <ContentBlock post={item} key={key} />
             : null;
           })}
       </div>

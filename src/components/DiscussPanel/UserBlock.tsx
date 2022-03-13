@@ -1,13 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { IPost } from "../../types/PostInterface";
 
 interface UserProps {
-  item: any;
+  item: IPost;
 }
 
 const UserBlock: React.FC<UserProps> = (props) => {
   const {item} = props;
-  const storageLogin = localStorage.getItem("login")
+  const storageLogin = localStorage.getItem("login");
   
   return (
     <div className="posts-panel-users-block">

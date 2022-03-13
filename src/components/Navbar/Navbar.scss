@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Neucha&family=Redressed&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Sansita+Swashed&display=swap');
 
 .navbar {
   display: flex;
@@ -10,7 +11,7 @@
   padding: 10px 80px;
   background-color: rgb(15, 17, 29);
   color: white;
-  font-family: Redressed, sans-serif;
+  font-family: 'Sansita Swashed', cursive;
   z-index: 1;
 
   &-block {

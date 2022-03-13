@@ -1,7 +1,7 @@
 import React from "react";
+import "./DiscussPanel.scss";
 import DiscussBlock from "./DiscussBlock";
 import UserBlock from "./UserBlock";
-import "./DiscussPanel.scss";
 import {Context} from "../../context/Context"
 import {IPost} from "../../types/PostInterface"
 
@@ -9,11 +9,11 @@ const DiscussPanel: React.FC = () => {
   const [state, ] = React.useContext(Context);
   const loggedIn = localStorage.getItem("loggedIn");
 
-  const filteredState = state.filter((itemFilter: any, index: number) => {
-    return index === state.findIndex((item: any) => item.login === itemFilter.login);
+  const filteredState = state.filter((itemFilter: IPost, index: number) => {
+    return index === state.findIndex((item: IPost) => item.login === itemFilter.login);
   });
 
-  let allVisibleState = state.filter((item: any) => {
+  let allVisibleState = state.filter((item: IPost) => {
     if(item.visibility === "Everyone") {
       return item;
     };
@@ -34,7 +34,7 @@ const DiscussPanel: React.FC = () => {
       }
       <div className="posts-panel-users">
         <p className="posts-panel-users-title">Our Users</p>
-        {filteredState.map((item: {}, key: number) => {
+        {filteredState.map((item: IPost, key: number) => {
           return <UserBlock item={item} key={key} />
         })}
       </div>

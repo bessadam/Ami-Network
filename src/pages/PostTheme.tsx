@@ -6,6 +6,7 @@ import DiscussPanel from "../components/DiscussPanel/DiscussPanel";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { Context } from "../context/Context";
 import { postCategories } from "../assets/data/Posts";
+import { IPost } from "../types/PostInterface";
 
 const PostTheme: React.FC = () => {
   const { category } = useParams<string>();
@@ -26,9 +27,9 @@ const PostTheme: React.FC = () => {
     <div className="PostTheme">
       <Sidebar />
       <div className="PostTheme-container">
-        {state.map((item: any, key: number) => {
+        {state.map((item: IPost, key: number) => {
           return item.category === category ? (
-            <ContentBlock posts={item} key={key} />
+            <ContentBlock post={item} key={key} />
           ) : "";
         })}
       </div>

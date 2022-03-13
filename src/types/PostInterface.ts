@@ -7,4 +7,13 @@ export interface IPost {
   text: string;
   loggedIn: boolean;
   visibility: string;
+  like: number;
+  heart: number;
 }
+
+export interface IComment {
+  text: string;
+  avatar: string;
+  date: string;
+}
+

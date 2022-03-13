@@ -2,6 +2,7 @@ import React from "react";
 import "./ContentSide.scss";
 import CommentBlock from "./CommentBlock";
 import { IPost } from "../../types/PostInterface";
+import { IComment } from "../../types/PostInterface";
 import { NavLink } from "react-router-dom";
 
 //icons
@@ -15,21 +16,21 @@ import { BsArrowUpRightCircle } from "react-icons/bs";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 
 interface PostProps {
-  posts: IPost;
+  post: IPost;
 }
 
 const ContentBlock: React.FC<PostProps> = (props) => {
-  let { posts } = props;
-  const [lmao, setLmao] = React.useState<number>(0);
-  const [heart, setHeart] = React.useState<number>(0);
+  let { post } = props;
+  const [like, setLike] = React.useState<number>(post.like);
+  const [heart, setHeart] = React.useState<number>(post.heart);
   const [commentValue, setCommentValue] = React.useState<string>("");
-  const [comments, setComments] = React.useState<any>([]);
+  const [comments, setComments] = React.useState<IComment[]>([]);
+  const commentRef = React.useRef<HTMLTextAreaElement>(null);
   const loggedIn = localStorage.getItem("loggedIn");
   const avatar = localStorage.getItem("avatar");
-  const commentRef = React.useRef<HTMLTextAreaElement>(null);
 
-  const addLmao = () => {
-    setLmao((prev) => prev + 1);
+  const addLike = () => {
+    setLike((prev) => prev + 1);
   };
 
   const addHeart = () => {
@@ -38,7 +39,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
 
   const shareTelegramm = () => {
     let url = window.location.href;
-    window.open(`https://t.me/share/url?url=${url}&text=${posts.title}`);
+    window.open(`https://t.me/share/url?url=${url}&text=${post.title}`);
   };
 
   const handleComment: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
@@ -49,7 +50,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
     if (commentValue.trim()) {
       let date = new Date();
       let newPost = {
-        avatar: posts.avatar,
+        avatar: post.avatar,
         text: commentValue,
         date:
           date.toDateString() +
@@ -75,35 +76,35 @@ const ContentBlock: React.FC<PostProps> = (props) => {
     <div className="content-block">
       <div className="content-block-header">
         <ul className="content-block-header-list">
-          <NavLink to={`/theme/${posts.category}`}>
+          <NavLink to={`/theme/${post.category}`}>
             <li className="content-block-header-list-theme">
-              {posts.category}
+              {post.category}
             </li>
           </NavLink>
-          <li className="content-block-header-list-date">{posts.date}</li>
-          <li className="content-block-header-list-privacy">{posts.visibility === "Only Authorized Users" ? <MdOutlinePrivacyTip/> : ""}</li>
+          <li className="content-block-header-list-date">{post.date}</li>
+          <li className="content-block-header-list-privacy">{post.visibility === "Only Authorized Users" ? <MdOutlinePrivacyTip/> : ""}</li>
         </ul>
         <div className="content-block-header-title">
-          <h1>{posts.title}</h1>
+          <h1>{post.title}</h1>
         </div>
         <div className="content-block-header-autor">
           <div className="content-block-header-autor-img">
-            <NavLink to={`/profile/${posts.login}`}>
+            <NavLink to={`/profile/${post.login}`}>
               <img
                 className="content-block-header-autor-img-item"
-                src={posts.avatar}
+                src={post.avatar}
                 alt=""
               />
             </NavLink>
           </div>
           <div className="content-block-header-autor-info">
-            <NavLink to={`/profile/${posts.login}`}>
+            <NavLink to={`/profile/${post.login}`}>
               <p className="content-block-header-autor-info-name">
-                {posts.login}
+                {post.login}
               </p>
             </NavLink>
             <p className="content-block-header-autor-info-dignity">
-              {posts.login === "bessadam"
+              {post.login === "bessadam"
                 ? "Admin of Posts Network"
                 : "GitHub User of Posts Network"}
             </p>
@@ -111,7 +112,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
         </div>
       </div>
       <div className="content-block-text">
-        <p>{posts.text}</p>
+        <p>{post.text}</p>
       </div>
       <div className="content-block-media">
         <div className="content-block-media-share">
@@ -127,8 +128,8 @@ const ContentBlock: React.FC<PostProps> = (props) => {
         </div>
         <div className="content-block-media-rating">
           <span>
-            <FaLaughSquint className="media-item" onClick={addLmao} />
-            <b>{lmao > 999 ? String(lmao)[0] + "k" : lmao}</b>
+            <FaLaughSquint className="media-item" onClick={addLike} />
+            <b>{like > 999 ? String(like)[0] + "k" : like}</b>
           </span>
           <span>
             <FcLike className="media-item" onClick={addHeart} />
@@ -147,7 +148,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
         {loggedIn ? (
           <div className="content-block-comments-createPost">
             <div className="content-block-comments-createPost-avatar">
-              <img alt="" src={avatar ? avatar : posts.avatar} />
+              <img alt="" src={avatar ? avatar : post.avatar} />
             </div>
             <div className="content-block-comments-createPost-field">
               <textarea
