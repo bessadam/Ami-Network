@@ -9,6 +9,7 @@ export interface IPost {
   visibility: string;
   like: number;
   heart: number;
+  comments: IComment[]
 }
 
 export interface IComment {

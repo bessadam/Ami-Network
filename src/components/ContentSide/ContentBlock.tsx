@@ -4,6 +4,9 @@ import CommentBlock from "./CommentBlock";
 import { IPost } from "../../types/PostInterface";
 import { IComment } from "../../types/PostInterface";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/store";
+import {addComment} from "../../redux/slices/commentSlice";
 
 //icons
 import { BsTelegram } from "react-icons/bs";
@@ -21,6 +24,9 @@ interface PostProps {
 
 const ContentBlock: React.FC<PostProps> = (props) => {
   let { post } = props;
+  const commentsRedux = useSelector((state: RootState) => state.comments.comments);
+  const dispatch = useDispatch();
+  
   const [like, setLike] = React.useState<number>(post.like);
   const [heart, setHeart] = React.useState<number>(post.heart);
   const [commentValue, setCommentValue] = React.useState<string>("");
@@ -46,7 +52,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
     setCommentValue(e.target.value);
   };
 
-  const addComment = () => {
+  const addComments = () => {
     if (commentValue.trim()) {
       let date = new Date();
       let newPost = {
@@ -59,6 +65,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
           ":" +
           String(date.getMinutes()),
       };
+      dispatch(addComment(newPost));
       setComments([...comments, newPost]);
       localStorage.setItem("comments", JSON.stringify([...comments, newPost]));
       setCommentValue("");
@@ -68,7 +75,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === "Enter") {
-      addComment();
+      addComments();
     }
   };
 
@@ -142,7 +149,7 @@ const ContentBlock: React.FC<PostProps> = (props) => {
         </div>
       </div>
       <div className="content-block-comments">
-        {comments.map((item: { text: string; date: string }, key: number) => {
+        {commentsRedux.map((item: { text: string; date: string }, key: number) => {
           return <CommentBlock item={item} key={key} />;
         })}
         {loggedIn ? (
@@ -161,13 +168,13 @@ const ContentBlock: React.FC<PostProps> = (props) => {
             </div>
             <div
               className="content-block-comments-createPost-submit"
-              onClick={addComment}
+              onClick={addComments}
             >
               <BsArrowUpRightCircle className="submit-icon" />
             </div>
           </div>
         ) : (
-          ""
+          null
         )}
       </div>
     </div>

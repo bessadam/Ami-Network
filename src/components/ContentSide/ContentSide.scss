@@ -17,6 +17,10 @@
     display: flex;
     flex-direction: column;
 
+    h1 {
+      word-break: break-word;
+    }
+
     &-list {
       display: flex;
       font-size: 12px;

@@ -2,18 +2,22 @@ import React from "react";
 import "./DiscussPanel.scss";
 import DiscussBlock from "./DiscussBlock";
 import UserBlock from "./UserBlock";
-import {Context} from "../../context/Context"
-import {IPost} from "../../types/PostInterface"
+// import {Context} from "../../context/Context"; bess
+import {IPost} from "../../types/PostInterface";
+import {useSelector} from "react-redux";
+import { RootState } from "../../redux/store";
 
 const DiscussPanel: React.FC = () => {
-  const [state, ] = React.useContext(Context);
+  // const [state, ] = React.useContext(Context); bess
   const loggedIn = localStorage.getItem("loggedIn");
+  const posts = useSelector((state: RootState) => state.posts.posts)
 
-  const filteredState = state.filter((itemFilter: IPost, index: number) => {
-    return index === state.findIndex((item: IPost) => item.login === itemFilter.login);
+
+  const filteredState = posts.filter((itemFilter: IPost, index: number) => {
+    return index === posts.findIndex((item: IPost) => item.login === itemFilter.login);
   });
 
-  let allVisibleState = state.filter((item: IPost) => {
+  let allVisibleState = posts.filter((item: IPost) => {
     if(item.visibility === "Everyone") {
       return item;
     };
@@ -25,7 +29,7 @@ const DiscussPanel: React.FC = () => {
         <p>Most Relevant Posts</p>
       </div>
       {loggedIn ?
-        state.slice(0,4).map((post: IPost, key: number) => {
+        posts.slice(0,4).map((post: IPost, key: number) => {
           return <DiscussBlock posts={post} key={key} />
         })
       : allVisibleState.slice(0,4).map((post: IPost, key: number) => {

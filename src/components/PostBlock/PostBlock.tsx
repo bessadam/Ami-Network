@@ -1,10 +1,15 @@
 import React from "react";
 import "./PostBlock.scss";
 import { useNavigate } from "react-router";
-import {Context} from "../../context/Context"
+import {Context} from "../../context/Context";
+import {useDispatch} from "react-redux";
+
+// import axios from "axios";
 //data
 import { postCategories } from "../../assets/data/Posts";
 import { postViewers } from "../../assets/data/Posts";
+import {addPost} from "../../redux/slices/rootSlice";
+
 //icons
 import { AiOutlineLogout } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
@@ -12,6 +17,7 @@ import { MdOutlinePrivacyTip } from "react-icons/md";
 
 const PostBlock: React.FC = () => {
   const [category, setCategory] = React.useState<string>("Front-end");
+  const [categories, setCategories] = React.useState<string[]>(postCategories);
   const [title, setTitle] = React.useState<string>("");
   const [text, setText] = React.useState<string>("");
   const [visibility, setVisibility] = React.useState<string>("Everyone");
@@ -21,6 +27,14 @@ const PostBlock: React.FC = () => {
   const userAvatar = localStorage.getItem("avatar");
   const userLogin = localStorage.getItem("login");
 
+  const dispatch = useDispatch();
+
+  // React.useEffect(() => {
+  //   axios.get('http://localhost:3000/db.json').then(({data}: any) => {
+  //     setCategories(data.postCategories)
+  //   })
+  // }, []);
+
   const handleTitle: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setTitle(e.target.value)
   };
@@ -29,11 +43,11 @@ const PostBlock: React.FC = () => {
     setText(e.target.value);
   };
 
-  const handleCategories:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+  const handleCategories: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setCategory(e.target.value)
   };
 
-  const handleVisibility:React.ChangeEventHandler<HTMLSelectElement> = (e) => {
+  const handleVisibility: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     setVisibility(e.target.value)
   };
 
@@ -51,6 +65,7 @@ const PostBlock: React.FC = () => {
         like: 0,
         heart: 0,
       }
+      dispatch(addPost(newPost));
       setState([newPost, ...state]);
       localStorage.setItem("posts", JSON.stringify([newPost, ...state]));
       navigate("/");
@@ -112,7 +127,7 @@ const PostBlock: React.FC = () => {
         <div className="post-block-form-field">
           <label>Category</label>
           <select defaultValue={category} onChange={handleCategories}>
-            {postCategories.map((item: string, key: number) => (
+            {categories.map((item: string, key: number) => (
               <option key={key} value={item}>{item}</option>
             ))}
           </select>

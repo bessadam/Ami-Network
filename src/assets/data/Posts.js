@@ -17,7 +17,8 @@ export const MockPosts = [
     loggedIn: false,
     visibility: "Everyone",
     like: 14,
-    heart: 5
+    heart: 5,
+    comments: []
   },
   {
     category: "Front-end",
@@ -29,7 +30,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 12,
-    heart: 1
+    heart: 1,
+    comments: []
   },
   {
     category: "Front-end",
@@ -41,7 +43,8 @@ export const MockPosts = [
     loggedIn: false,
     visibility: "Everyone",
     like: 32,
-    heart: 12
+    heart: 12,
+    comments: []
   },
   {
     category: "Back-end",
@@ -53,7 +56,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 7,
-    heart: 5
+    heart: 5,
+    comments: []
   },
   {
     category: "Mobile-app",
@@ -65,7 +69,8 @@ export const MockPosts = [
     loggedIn: false,
     visibility: "Everyone",
     like: 41,
-    heart: 22
+    heart: 22,
+    comments: []
   },
   {
     category: "Books",
@@ -77,7 +82,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 17,
-    heart: 22
+    heart: 22,
+    comments: []
   },
   {
     category: "Theory",
@@ -89,7 +95,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 65,
-    heart: 44
+    heart: 44,
+    comments: []
   },
   {
     category: "Tasks",
@@ -101,7 +108,8 @@ export const MockPosts = [
     loggedIn: false,
     visibility: "Everyone",
     like: 77,
-    heart: 53
+    heart: 53,
+    comments: []
   },
   {
     category: "Testing",
@@ -113,7 +121,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 81,
-    heart: 54
+    heart: 54,
+    comments: []
   },
   {
     category: "Hardware's",
@@ -125,7 +134,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 55,
-    heart: 22
+    heart: 22,
+    comments: []
   },
   {
     category: "Interviews",
@@ -137,7 +147,8 @@ export const MockPosts = [
     loggedIn: true,
     visibility: "Everyone",
     like: 94,
-    heart: 75
+    heart: 75,
+    comments: []
   },
   {
     category: "Others",
@@ -149,7 +160,8 @@ export const MockPosts = [
     loggedIn: false,
     visibility: "Everyone",
     like: 105,
-    heart: 129
+    heart: 129,
+    comments: []
   },
 ];
 

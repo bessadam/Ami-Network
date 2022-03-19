@@ -10,14 +10,13 @@ import { MockPosts } from "./assets/data/Posts";
 
 const App: React.FC = () => {
   const [postState, setPostState] = React.useState<IPost[]>(MockPosts);
-
+  
   React.useEffect(() => {
-    let postStorage = localStorage.getItem("posts");
-    if (postStorage) {
-      setPostState(JSON.parse(postStorage));
+    let postsStorage = localStorage.getItem("posts");
+    if (postsStorage) {
+      setPostState(JSON.parse(postsStorage));
     }
   }, []);
-
 
   return (
     <div className="App">
