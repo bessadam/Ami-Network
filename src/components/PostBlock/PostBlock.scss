@@ -1,8 +1,8 @@
 .post-block {
   display: flex;
   margin-top: 15px;
-  padding: 70px 70px;
-  width: 900px;
+  padding: 70px;
+  // width: 900px;
   border-radius: 5px;
   background-color: rgb(34,39,45);
 
@@ -78,7 +78,7 @@
       }
 
       select {
-        width: 400px;
+        width: 100%;
         height: 40px;
         border: none;
         outline: none; 
@@ -89,7 +89,7 @@
       }
 
       input {
-        width: 400px;
+        width: 100%;
         height: 40px;
         padding-left: 5px;
         outline: none;
@@ -99,14 +99,10 @@
         border-bottom: 1px solid #eee;
         background-color: transparent;
         transition: 0.5s;
-
-        &:focus {
-          width: 500px;
-        }
       }
 
       textarea {
-        width: 400px;
+        width: 100%;
         height: 100px;
         padding-left: 5px;
         outline: none;
@@ -117,21 +113,15 @@
         background-color: transparent;
         resize: none;
         transition: 0.5s;
-
-        &:focus {
-          width: 500px;
-        }
       }
 
       &-buttons {
         display: flex;
-        justify-content: space-between;
-        width: 400px;
-
   
         &-submit {
-          width: 190px;
+          width: auto;
           padding: 15px 25px;
+          margin-right: 10px;
           color: rgb(0,188,136); 
           border-color:rgb(0,188,136);
           font-size: 18px;
@@ -147,7 +137,7 @@
         }
   
         &-clear {
-          width: 190px;
+          width: auto;
           padding: 15px 25px;
           color: rgb(249,183,2); 
           border-color:rgb(249,183,2);
@@ -169,8 +159,6 @@
 
 .verification-block {
   display: flex;
-  width: 800px;
-  height: 500px;
   background-color: rgb(34,39,45);
   color: #000;
   border-radius: 5px;
@@ -181,7 +169,6 @@
     flex-direction: column;
     justify-content: center;
     width: 500px;
-    height: 500px;
 
     h1 {
       margin-bottom: 30px;
@@ -240,6 +227,61 @@
 
     &-item {
       flex-shrink:0;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .post-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    padding: 10px 15px;
+
+    &-userInfo {
+      padding-bottom: 20px;
+    }
+
+    &-form {
+      margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+      &-field {
+        width: 100%;
+        padding: 0 10px;
+
+        &-buttons {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          button {
+            margin: 10px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .verification-block {
+    width: 90%;
+    justify-content: center;
+    &-signIn {
+      padding: 50px 0;
+
+      &-form {
+        input, button {
+          width: 85%;
+        }
+      }
+    }
+
+    &-wallpaper {
+      display: none;
     }
   }
 }

@@ -54,7 +54,10 @@ const VerificationBlock: React.FC<IUserProps> = ({ login, setLogin, }) => {
         <h1>Sign in</h1>
         <span>
           <p>
-            to sign-in use your GitHub <AiFillGithub /> Nickname
+            to sign-in use your GitHub <AiFillGithub /> Nickname 
+          </p>
+          <p>
+            and mock password
           </p>
         </span>
         <div className="verification-block-signIn-form">

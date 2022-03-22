@@ -1,6 +1,7 @@
 .posts-panel {
   border: none;
   border-radius: 5px;
+  width: 100%;
 
   &-title {
     border-left: 3px solid rgb(232, 95, 99);
@@ -17,7 +18,6 @@
 
 .posts-block {
   display: flex;
-  width: 300px;
   background-color: #fff;
   color: #000;
   margin-bottom: 5px;
@@ -64,7 +64,7 @@
 }
 
 .posts-panel-users {
-  width: 300px;
+  // max-width: 100%;
   padding: 20px 15px;
   border-radius: 5px;
   background-color: #fff;
@@ -122,5 +122,12 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .posts-panel-users {
+    width: 70%;
+    text-align: center;
   }
 }

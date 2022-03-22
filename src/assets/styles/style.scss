@@ -45,6 +45,18 @@
   display: flex;
   justify-content: center;
   padding: 30px 80px;
+
+  .sidebar {
+    width: 15%;
+  }
+
+  .content {
+    width: 60%;
+  }
+
+  .posts-panel {
+    width: 25%;
+  }
 }
 
 .PostTheme {
@@ -79,4 +91,29 @@
   height: 100vh;
   color: white;
   font-size: 50px;
+}
+
+@media screen and (max-width: 1024px) {
+  .posts {
+    display: flex;
+    flex-direction: column;
+    align-items:center; 
+    padding: 20px 10px;
+
+    .sidebar {
+      align-items: center;
+      order: 2;
+      width: 60%;
+    }
+  
+    .content {
+      order: 1;
+      width: 90%;
+    }
+  
+    .posts-panel {
+      order: 3;
+      width: 70%;
+    }
+  }
 }
